@@ -34,15 +34,11 @@ namespace test.Controllers
                                 Origin = f.DepartureStation,
                                 Destination = f.ArrivalStation,
                                 Price = f.Price,
-                                Transport = f.Transport != null
-                                    ? new Transport
-                                    {
-                                        FlightCarrier = f.Transport.FlightCarrier,
-                                        FlightNumber = f.Transport.FlightNumber
-                                    }
-                                    : null
+                                PriceCOP = f.Price * 3.9,
+                                //Transport = null
                             }).ToList(),
                         Price = CalculatePrice(route),
+                        PriceCOP = CalculatePrice (route) * 3.9,
                         NumberOfFlights = route.Count(f => f != null), // Contar vuelos no nulos
                         Stops = route.Count(f => f != null) > 1 ? route.Count(f => f != null) - 1 : 0,
                     })
@@ -55,7 +51,7 @@ namespace test.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it according to your application's requirements.
+                
                 throw new Exception("Error al calcular las rutas de viaje", ex);
             }
         }
@@ -71,7 +67,7 @@ namespace test.Controllers
         {
             if (currentOrigin == destination)
             {
-                // Avoid duplicate routes
+                
                 if (!allRoutes.Any(route => route.SequenceEqual(currentRoute)))
                 {
                     allRoutes.Add(new List<Flight>(currentRoute));
@@ -79,7 +75,7 @@ namespace test.Controllers
                 return;
             }
 
-            // Avoid duplicate flights in the current route
+            
             var possibleFlights = allFlights
                 .Where(f => f.DepartureStation == currentOrigin && !currentRoute.Contains(f))
                 .ToList();
@@ -91,7 +87,7 @@ namespace test.Controllers
                 currentRoute.Remove(flight);
             }
 
-            // Consider direct flights only if there are no stops in the current route
+           
             if (!currentRoute.Any())
             {
                 var directFlight = allFlights.FirstOrDefault(f => f.DepartureStation == currentOrigin && f.ArrivalStation == destination);

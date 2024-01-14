@@ -17,5 +17,7 @@ namespace test.Entidades
         public string ArrivalStation { get; set; }
 
         public double Price { get; set; }
+
+        public double PriceCOP { get; set; }
     }
 }

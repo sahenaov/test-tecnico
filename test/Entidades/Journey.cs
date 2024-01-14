@@ -14,6 +14,8 @@ namespace test.Entidades
 
         public Double Price { get; set;}
 
+        public Double PriceCOP { get; set; }
+
         public int NumberOfFlights { get; set; } // Número de vuelos en la ruta
         public int Stops { get; set; } = 0;
     }
