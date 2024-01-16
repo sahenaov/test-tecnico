@@ -1,4 +1,4 @@
-Test
+#Test
 
 El proyecto funciona con el request de rutas múltiples, el cual permite determinar los posibles caminos a un mismo destino conociendo también el origen. Provee el numero de vuelos y el precio total.
 
@@ -15,3 +15,9 @@ En el proyecto se establecieron 3 etapas para un uso adecuado.
 Adicionalmente
 
 Se observa en la entrega que los valores de la clase transporte estan Null.
+
+# Se presenta el archivo que contiene el backend y el que contiene el frontend.
+
+La problematica surge al conectar el NetCore con Angular debido a CORS, por lo cual es necesario usar ng serve --proxy-config proxy.conf.json para acceder al servidor. Para el correcto funcionamiento, tanto el NetCore como el Angular deben estar ejecutándose.
+
+El localhost para observar la interfaz es http://localhost:4200/
